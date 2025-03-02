@@ -1,0 +1,30 @@
+body{
+    margin:0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+
+}
+#game-container{
+position: relative;
+width: 100vw;
+height: 100vh;
+overflow: hidden;
+background-color: #87ceeb;
+}
+/* finn e jake*/
+.player{
+    position: absolute;
+    bottom:50px;
+    width: 50px;
+    height: 100px;
+    
+}
+/*  princesa  */
+.princess{
+
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    width: 50px;
+    height: 100px;
+}
