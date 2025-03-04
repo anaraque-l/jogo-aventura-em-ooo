@@ -7,6 +7,6 @@
  - Resgate princesas.
 
 ## Tecnologias Usadas
--HTML
--CSS
--JavaScript
+- HTML
+- CSS
+- JavaScript

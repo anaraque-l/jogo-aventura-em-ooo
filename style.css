@@ -15,8 +15,8 @@ background-color: #87ceeb;
 .player{
     position: absolute;
     bottom:50px;
-    width: 50px;
-    height: 100px;
+    width: 165px;
+    height: 300px;
     
 }
 /*  princesa  */
@@ -26,5 +26,62 @@ background-color: #87ceeb;
     bottom: 50px;
     right: 50px;
     width: 50px;
-    height: 100px;
+    height: 50px;
+}
+.casaArvore{
+    position: absolute;
+    bottom: 0;
+    top: 105px;
+    right: -150px;
+    height: 580px;
+    width: 590px;
+}
+/* Gramado*/
+.grama{
+    position:absolute;
+    bottom: 0;
+    right: -500px;
+    width: 2800px;
+    height: 500px;
+    top: 440px;
+    background-repeat:5;
+    background-size:cover;
+
+    
+}
+.nuvem{
+    position: absolute;
+    bottom: 0;
+    top: 10px;
+    right: 150px;
+    width: 200px;
+    height: 200px;
+    background-size:cover;
+   
+
+    
+}
+.nuvem2{
+    position: absolute;
+    bottom: 0;
+    top: 10px;
+    right: 1300px;
+    width: 200px;
+    height: 200px;
+    background-size:cover;
+   
+
+    
+}
+.nuvem3{
+    position: absolute;
+    bottom: 0;
+    top: 10px;
+    right: 700px;
+    width: 200px;
+    height: 200px;
+    background-size:cover;
+   
+
+    
 }
