@@ -12,13 +12,14 @@ overflow: hidden;
 background-color: #87ceeb;
 }
 /* finn e jake*/
-.player{
+.player {
     position: absolute;
-    bottom:50px;
+    bottom: 50px;
+    left: 50px;
     width: 165px;
     height: 300px;
-    
 }
+
 /*  princesa  */
 .princess{
 
@@ -40,15 +41,16 @@ background-color: #87ceeb;
 .grama{
     position:absolute;
     bottom: 0;
-    right: -500px;
-    width: 2800px;
+    left: 0;
+    width: 2900px;
     height: 500px;
     top: 440px;
-    background-repeat:5;
+    background-repeat: repeat-x;
     background-size:cover;
 
     
 }
+
 .nuvem{
     position: absolute;
     bottom: 0;
