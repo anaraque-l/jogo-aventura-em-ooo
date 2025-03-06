@@ -1,5 +1,7 @@
 const player = document.querySelector('.player');
 const obstaculo = document.querySelector('.obstaculo');
+const gameOverScreen = document.getElementById('game-over');
+const menuButton = document.getElementById('menu-button');
 
 const jump = () => {
   if (player.classList.contains('jump')) return;
@@ -11,32 +13,37 @@ const jump = () => {
 
 const loop = setInterval(() => {
   const obstaculoPosition = obstaculo.offsetLeft;
-  const playerPosition = +window.getComputedStyle(player).top.replace('px', ''); 
+  const playerPosition = +window.getComputedStyle(player).top.replace('px', '');
+
+  // Verifica a colisão
   if (
     obstaculoPosition <= 120 &&
-    obstaculoPosition > 0 && 
+    obstaculoPosition > 0 &&
     playerPosition >= 400 &&
-    playerPosition <= 550 
+    playerPosition <= 550
   ) {
-   
+    // Para a animação do obstáculo
     obstaculo.style.animation = 'none';
     obstaculo.style.left = `${obstaculoPosition}px`;
 
-    
+    // Para a animação do jogador (se houver)
     player.style.animation = 'none';
     player.style.top = `${playerPosition}px`;
 
-  
+    // Para o loop do jogo
     clearInterval(loop);
 
-   
-    alert('Game Over!');
+    // Mostra a tela de "Game Over"
+    gameOverScreen.style.display = 'flex';
   }
 }, 10);
+
+menuButton.addEventListener('click', () => {
+    alert("voltando ao menu principal...")
+})
 
 document.addEventListener('keydown', (event) => {
   if (event.code === "Space" || event.key === " ") {
     jump();
   }
 });
-
