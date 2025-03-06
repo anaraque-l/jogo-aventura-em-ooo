@@ -1,55 +1,41 @@
-const player = document.getElementById("player");
-const gameContainer = document.getElementById("game-container");
 
-let playerY = 300; 
-let gravidade = 2;
-let poderPular = 20;
-let velocidadeY = 0;
-let estaPulando = false;
-let speed = 5; 
+const gameContainer = document.getElementById("game-container");
+const player = document.querySelector('.player');
+
+const jump = () => {
+  player.classList.add('jump');
+  setTimeout(() => {
+    player.classList.remove('jump'); // Remove a classe após o pulo
+  }, 500); // Tempo da animação de pulo
+};
+
+// Verifica se a tecla pressionada é a tecla Espaço
+document.addEventListener('keydown', (event) => {
+  if (event.code === "Space" || event.key === " ") { // Verifica a tecla Espaço
+    jump();
+  }
+});
 
 const elementosCenario = document.querySelectorAll(".casaArvore, .grama, .nuvem, .nuvem2, .nuvem3");
 let posicoes = {};
 
-
 elementosCenario.forEach(el => {
-    posicoes[el.id] = parseInt(getComputedStyle(el).left) || 0;
+  posicoes[el.id] = parseInt(getComputedStyle(el).left) || 0;
 });
 
+const speed = 2; // Velocidade do movimento do cenário
 
-document.addEventListener("keydown", (event) => {
-    if ((event.key === " " || event.code === "Space") && !estaPulando) {
-        estaPulando = true;
-        velocidadeY = -poderPular;
+const updateGame = () => {
+  elementosCenario.forEach(el => {
+    posicoes[el.id] -= speed;
+    el.style.left = posicoes[el.id] + "px";
+
+    if (posicoes[el.id] < -parseInt(getComputedStyle(el).width)) {
+      posicoes[el.id] += 2 * parseInt(getComputedStyle(el).width);
     }
-});
+  });
 
-function updateGame() {
-    velocidadeY += gravidade;
-    playerY += velocidadeY;
-
-    
-    player.style.top = playerY + "px";
-
-   
-    if (playerY >= 350) {
-        playerY = 350;
-        estaPulando = false;
-        velocidadeY = 0;
-    }
-
-   
-    elementosCenario.forEach(el => {
-        posicoes[el.id] -= speed;
-        el.style.left = posicoes[el.id] + "px";
-
-       
-        if (posicoes[el.id] < -parseInt(getComputedStyle(el).width)) {
-            posicoes[el.id] = window.innerWidth;
-        }
-    });
-
-    requestAnimationFrame(updateGame);
-}
+  requestAnimationFrame(updateGame);
+};
 
 updateGame();
