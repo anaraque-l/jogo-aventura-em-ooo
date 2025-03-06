@@ -1,41 +1,42 @@
-
-const gameContainer = document.getElementById("game-container");
 const player = document.querySelector('.player');
+const obstaculo = document.querySelector('.obstaculo');
 
 const jump = () => {
+  if (player.classList.contains('jump')) return;
   player.classList.add('jump');
   setTimeout(() => {
-    player.classList.remove('jump'); // Remove a classe após o pulo
-  }, 500); // Tempo da animação de pulo
+    player.classList.remove('jump');
+  }, 500); 
 };
 
-// Verifica se a tecla pressionada é a tecla Espaço
+const loop = setInterval(() => {
+  const obstaculoPosition = obstaculo.offsetLeft;
+  const playerPosition = +window.getComputedStyle(player).top.replace('px', ''); 
+  if (
+    obstaculoPosition <= 120 &&
+    obstaculoPosition > 0 && 
+    playerPosition >= 400 &&
+    playerPosition <= 550 
+  ) {
+   
+    obstaculo.style.animation = 'none';
+    obstaculo.style.left = `${obstaculoPosition}px`;
+
+    
+    player.style.animation = 'none';
+    player.style.top = `${playerPosition}px`;
+
+  
+    clearInterval(loop);
+
+   
+    alert('Game Over!');
+  }
+}, 10);
+
 document.addEventListener('keydown', (event) => {
-  if (event.code === "Space" || event.key === " ") { // Verifica a tecla Espaço
+  if (event.code === "Space" || event.key === " ") {
     jump();
   }
 });
 
-const elementosCenario = document.querySelectorAll(".casaArvore, .grama, .nuvem, .nuvem2, .nuvem3");
-let posicoes = {};
-
-elementosCenario.forEach(el => {
-  posicoes[el.id] = parseInt(getComputedStyle(el).left) || 0;
-});
-
-const speed = 2; // Velocidade do movimento do cenário
-
-const updateGame = () => {
-  elementosCenario.forEach(el => {
-    posicoes[el.id] -= speed;
-    el.style.left = posicoes[el.id] + "px";
-
-    if (posicoes[el.id] < -parseInt(getComputedStyle(el).width)) {
-      posicoes[el.id] += 2 * parseInt(getComputedStyle(el).width);
-    }
-  });
-
-  requestAnimationFrame(updateGame);
-};
-
-updateGame();

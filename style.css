@@ -98,10 +98,10 @@ border-bottom: 18px solid rgb(35, 160, 35);
 .obstaculo{
     position:  absolute;
     bottom: 0;
-    width: 120px;
+    width: 105px;
     height:130px;
     top: 550px;
-    right: -120px;
+   
     z-index: 3;
     animation: pipe-animation 2s infinite linear;
 }
@@ -118,20 +118,20 @@ border-bottom: 18px solid rgb(35, 160, 35);
 }
 }
 
-@keyframes jump{
-    0%{
-        bottom: 0;
+@keyframes jump {
+    0% {
+      top: 400px; /* Posição inicial */
     }
-    40%{
-        bottom: 220px;
+    40% {
+      top: 180px; /* Ponto mais alto do pulo */
     }
-    50%{
-        bottom: 220px; 
+    50% {
+      top: 180px; /* Mantém no ponto mais alto */
     }
-    60%{
-        bottom: 220px;
+    60% {
+      top: 180px; /* Mantém no ponto mais alto */
     }
-    100%{
-        bottom:0%;
+    100% {
+      top: 400px; /* Volta à posição inicial */
     }
-}
+  }
