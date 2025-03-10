@@ -41,6 +41,26 @@ border-bottom: 18px solid #1060ca;
 }
 
 
+@keyframes mover-princesa {
+  0% {
+    right: -200px; /* Começa fora da tela, à direita */
+  }
+  100% {
+    right: 1300px; /* Vai até a posição desejada à direita */
+  }
+}
+
+.princesa {
+  position: absolute;
+  top: 300px; /* Posição vertical da princesa */
+  right: -200px; /* Começa fora da tela */
+  width: 150px; /* Tamanho da princesa */
+  height: 150px;
+  z-index: 10;
+  animation: mover-princesa 5s linear infinite; /* Movimento contínuo da princesa */
+}
+
+
 
 .casaArvore{
     position: absolute;
@@ -139,7 +159,9 @@ border-bottom: 18px solid #1060ca;
       top: 400px; 
     }
   }
-  
+  .player.jump {
+    animation: jump 0.5s ease-in-out; /* Aplica a animação do pulo */
+  }
   @keyframes mover-nuvem {
     from {
         right: -200px; /
@@ -149,13 +171,13 @@ border-bottom: 18px solid #1060ca;
     }
 }
 
-/* Estilo das nuvens */
+
 .nuvem, .nuvem2, .nuvem3 {
     position: absolute;
-    top: 10px; /* Posição vertical */
+    top: 10px; 
     width: 200px;
     height: auto;
-    animation: mover-nuvem 20s infinite linear; /* Mesma animação para todas */
+    animation: mover-nuvem 20s infinite linear; 
 }
 
 /* Posições iniciais das nuvens */
@@ -207,40 +229,14 @@ border-bottom: 18px solid #1060ca;
   z-index: 10;
 }
 #final-score {
-  font-family: 'Press Start 2P', cursive; /* Fonte retrô */
+  font-family: 'Press Start 2P', cursive; 
   font-size: 24px;
-  color: #FFFFFF; /* Cor do texto */
-  text-shadow: 2px 2px 0px #000000; /* Sombra para destacar */
-  margin-bottom: 20px; /* Espaçamento abaixo do score */
-}
-@keyframes mover-princesa {
-  from {
-      right: -100px; 
-  }
-  to {
-      right: 100%; 
-}
-}
-.princesa {
-  position: absolute;
-  top: 250px; /* Ajustado para ser alcançada pelo pulo */
-  right: -100px; /* Começa fora da tela */
-  width: 200px;
-  height: 200px;
-  z-index: 10;
-  display: none; /* Inicialmente oculta */
-  animation: mover-princesa 5s linear forwards; /* Inicia a animação da princesa */
+  color: #FFFFFF; 
+  text-shadow: 2px 2px 0px #000000; 
+  margin-bottom: 20px; 
 }
 
-/* Animação da princesa */
-@keyframes mover-princesa {
-  from {
-    right: -100px; /* Começa fora da tela */
-  }
-  to {
-    right: 100%; /* Move para fora da tela à esquerda */
-  }
-}
+
 
 
 /* Estilo do escudo */
@@ -281,3 +277,41 @@ border-bottom: 18px solid #1060ca;
   z-index: 2;
   animation: mover-montanha2 25s infinite linear;
  }
+ 
+ @keyframes mover-princesa {
+  0% {
+    right: -200px; 
+  }
+  100% {
+    right: 1300px; 
+  }
+}
+
+.princesa {
+  position: absolute;
+  top: 300px; 
+  right: -200px; 
+  width: 150px;
+  height: 150px;
+  animation: mover-princesa 5s linear infinite;
+}
+
+
+
+.escudo-ativo {
+  border: 3px solid #ff0000;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #ff0000;
+  animation: escudo-fogo 0.5s infinite alternate;
+}
+
+@keyframes escudo-fogo {
+  from {
+    border-color: #ff0000;
+    box-shadow: 0 0 10px #ff0000;
+  }
+  to {
+    border-color: #ff9900;
+    box-shadow: 0 0 20px #ff9900;
+  }
+}
