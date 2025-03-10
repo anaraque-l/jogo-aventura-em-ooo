@@ -1,0 +1,120 @@
+/* Estilo do corpo */
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(to right, #2b998b, #2b998b);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+#bmo-menu {
+  width: 700px; 
+  height: 600px;
+  background-color: #2b998b;
+  border-radius: 30px; 
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); 
+  padding: 30px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #000;
+}
+
+
+#bmo-screen {
+  width: 90%;
+  height: 90%;
+  background-color: #a4d9b0; 
+  border-radius: 20px; 
+  padding: 20px;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3); 
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Container do conteúdo (imagem e botões) */
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; 
+}
+
+
+h1 {
+  font-family:' Press Start 2P', cursive;
+  font-size: 30px;
+  color: #db212a; 
+  margin-bottom: 20px;
+               
+  -webkit-text-stroke: 2px #000; 
+ 
+}
+
+
+
+
+.button-container {
+  display: flex;
+  gap: 20px; 
+}
+
+
+button {
+  background-color: #db212a;
+  border: 3px solid #000;
+  border-radius: 15px;
+  color: #FFF;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 24px;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: #a6141b;
+  transform: translateY(-2px);
+  box-shadow: 7px 7px 0px #000;
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 3px 3px 0px #000;
+}
+
+
+.logo {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+
+.player-menu {
+  width: 200px; 
+  height: auto;
+  margin-bottom: 20px;
+}
+
+
+#bmo-text {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 60px;
+  color: #a4d9b0; 
+  border: 4px  #000;
+  text-shadow: 4px 4px 0px #000, 
+               6px 6px 5px rgba(0, 0, 0, 0.5);  
+  margin-top: 20px;
+}
+
+
+
