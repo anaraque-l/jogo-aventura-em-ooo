@@ -1,10 +1,9 @@
-# jogo Aventura na Terra de ooo
+# jogo Aventura no Reino Gelado
  Um jogo estilo Flappy Bird, adaptado para a Terra de Ooo ( Hora de Aventura), feito com HTML, CSS E JavaScript.
 
  ## Como jogar
- - colete itens como espadas, enquiridios e doces. 
- - Desvie de obstáculos como "Caracol-litch" e "reis gelados" ou Icebergs.
- - Resgate princesas.
+ - colete itens princesas, espadas para ganhar benefícios. 
+ - Desvie de obstáculos como "gunter, o pinguim" e "reis gelados" com o space.
 
 ## Tecnologias Usadas
 - HTML
