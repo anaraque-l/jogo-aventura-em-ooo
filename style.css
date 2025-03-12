@@ -110,7 +110,7 @@ border-bottom: 18px solid #1060ca;
   }
 
   #menu-button{
-    background-color: #FF6F61;
+    background-color: #0829b7;
     border: 3px solid #000;
     border-radius: 15px;
     color: #fafafa;
@@ -124,7 +124,7 @@ border-bottom: 18px solid #1060ca;
   }
 
   #menu-botton:hover{
-    background-color:#FF3B2F ;
+    background-color:#010558 ;
     transform: translateY(-2px);
     box-shadow: 7px 7px 0px #000; 
 
@@ -314,4 +314,6 @@ border-bottom: 18px solid #1060ca;
     border-color: #ff9900;
     box-shadow: 0 0 20px #ff9900;
   }
+  /* Lembrar de adicionar lógicas de outros beneficios e velocidade!! */
+
 }
