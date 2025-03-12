@@ -40,13 +40,13 @@ border-bottom: 18px solid #1060ca;
     z-index: 10;
 }
 
-
+/*  Começa fora da tela e vai até o fim  */
 @keyframes mover-princesa {
   0% {
-    right: -200px; /* Começa fora da tela, à direita */
+    right: -200px; 
   }
   100% {
-    right: 1300px; /* Vai até a posição desejada à direita */
+    right: 1300px;
   }
 }
 
@@ -60,18 +60,18 @@ border-bottom: 18px solid #1060ca;
   animation: mover-princesa 5s linear infinite; /* Movimento contínuo da princesa */
 }
 
+.reiGelado{
+  position: absolute;
+  top: 300px; 
+  right: -200px; 
+  width: 150px; 
+  height: 150px;
+  z-index: 10;
+  animation: mover-reiGelado 5s linear infinite; 
 
-
-.casaArvore{
-    position: absolute;
-    bottom: 0;
-    top: 20px;
-    right: px;
-    height:528px;
-    width: 560px;
-    z-index: 2;
-    animation: mover-cenario 30s infinite linear;
 }
+
+
 .obstaculo{
     position:  absolute;
     bottom: 0;
@@ -133,6 +133,41 @@ border-bottom: 18px solid #1060ca;
     transform: translateY(0);
     box-shadow: 3px 3px 0px #000;
   }
+  @keyframes mover-montanha{
+    from{
+      transform: translateX(100vw);
+    }
+    to{
+      transform: translateX(-150vw);
+    }
+
+  }
+  .montanha0, .montanha, .montanha2{
+  position: absolute;
+  bottom: 0;
+  top: 26px;
+  height: 520px;
+  width: 520px;
+  z-index: 2;
+  animation: mover-montanha 20s infinite linear;
+  animation-fill-mode: both; 
+  }
+
+  .montanha0{
+    animation-duration: 20s;
+    animation-delay: 0s;
+   }
+  .montanha{
+    animation-duration: 22s;
+    animation-delay: 5s;
+
+  }
+  .montanha2{
+    animation-duration: 24s;
+    animation-delay: 10s;
+  }
+
+  
 @keyframes pipe-animation{
     from{
         right: 0; 
@@ -178,21 +213,27 @@ border-bottom: 18px solid #1060ca;
     width: 200px;
     height: auto;
     animation: mover-nuvem 20s infinite linear; 
+    animation-fill-mode: both; 
 }
 
-/* Posições iniciais das nuvens */
+/* Posições iniciais das nuvens e ordem*/
 #nuvem {
     right: -200px;
-    animation-duration: 20s; }
+    animation-duration: 20s;
+    animation-delay:0s ;
+
+   }
 
 #nuvem2 {
     right: 50%; 
-    animation-duration: 25s; 
+    animation-duration: 22s; 
+    animation-delay: 5s;
 }
 
 #nuvem3 {
     right: -600px; 
-    animation-duration: 30s; 
+    animation-duration: 24s; 
+    animation-delay: 10s;
 }
 @keyframes mover-cenario {
   from {
@@ -202,22 +243,7 @@ border-bottom: 18px solid #1060ca;
       right: 100%; 
   }
 }
-@keyframes mover-montanha {
-  from {
-      right: -590px; 
-  }
-  to {
-      right: 100%; 
-  }
-}
-@keyframes mover-montanha2{
-  from {
-      right: -400px; 
-  }
-  to {
-      right: 100%; 
-  }
-}
+
 #score{
   position: absolute;
   top:40px;
@@ -257,28 +283,17 @@ border-bottom: 18px solid #1060ca;
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
-.montanha{
-  position: absolute;
-  bottom: 0;
-  top: 20px;
-  right: px;
-  height:530px;
-  width: 520px;
-  z-index: 2;
-  animation: mover-montanha 20s infinite linear;
-}
-.montanha2{
-  position: absolute;
-  bottom: 0;
-  top: 20px;
-  right: px;
-  height:530px;
-  width: 520px;
-  z-index: 2;
-  animation: mover-montanha2 25s infinite linear;
- }
+
  
  @keyframes mover-princesa {
+  0% {
+    right: -200px; 
+  }
+  100% {
+    right: 1300px; 
+  }
+}
+@keyframes mover-reiGelado {
   0% {
     right: -200px; 
   }
