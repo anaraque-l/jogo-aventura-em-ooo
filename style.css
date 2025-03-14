@@ -2,7 +2,7 @@ body{
     margin:0;
     font-family: 'Arial', sans-serif;
     background-color: #f0f0f0;
-
+    overflow: hidden; 
 }
 #game-container{
 position: relative;
@@ -11,9 +11,12 @@ height: 100vh;
 overflow: hidden;
 background: linear-gradient(to right, #12abf5
 , #0829b7);
-
-
 border-bottom: 18px solid #1060ca;
+flex-direction: column;
+display: flex;
+justify-content: center;
+align-items: center;
+
 
 }
 #grama {
@@ -61,13 +64,8 @@ border-bottom: 18px solid #1060ca;
 }
 
 .reiGelado{
-  position: absolute;
-  top: 300px; 
-  right: -200px; 
-  width: 150px; 
-  height: 150px;
-  z-index: 10;
-  animation: mover-reiGelado 5s linear infinite; 
+ visibility: hidden;
+ opacity:0;
 
 }
 
@@ -332,3 +330,5 @@ border-bottom: 18px solid #1060ca;
   /* Lembrar de adicionar lógicas de outros beneficios e velocidade!! */
 
 }
+
+

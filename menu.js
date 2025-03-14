@@ -3,7 +3,7 @@ const instructionsButton = document.getElementById('instructions-button');
 
 // Botão "Iniciar Jogo"
 startButton.addEventListener('click', () => {
-  window.location.href = 'game.html'; // Redireciona para a página do jogo
+  window.location.href = 'index.html'; // Redireciona para a página do jogo
 });
 
 // Botão "Instruções"

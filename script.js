@@ -4,7 +4,7 @@ const menuButton = document.getElementById('menu-button');
 const finalScoreElement = document.getElementById('final-score');
 const princesa = document.getElementById('princesa');
 const scoreElement = document.getElementById('score');
-
+/* Adicionar lógica rei gelado,  aumento velocidade e outra princesa*/
 let score = 0;
 let escudoAtivo = false;
 let playerEstaPulando = false;
@@ -15,7 +15,7 @@ function atualizarScore() {
   score++;
   scoreElement.textContent = `Score: ${score}`;
 
-  // Mostrar a princesa quando o score for 3
+  // Mostrar a princesa quando o score 3
   if (score === 10 || (score > 10 && (score - 10) % 50 === 0)) {
     princesa.style.display = 'block'; 
   
@@ -29,13 +29,13 @@ scoreIntervalo = setInterval(atualizarScore, 1000);
 
 // Função para pular
 const jump = () => {
-  if (player.classList.contains('jump')) return; // Impede o pulo duplo
+  if (player.classList.contains('jump')) return; // Pra impedir o pulo duplo
 
   playerEstaPulando = true;
   player.classList.add('jump'); // Aplica a animação do pulo
 
   setTimeout(() => {
-    player.classList.remove('jump'); // Remove a animação do pulo após 0.5s
+    player.classList.remove('jump'); // Para removee a animação do pulo após 0.5s
     playerEstaPulando = false;
   }, 500); 
 };
@@ -47,7 +47,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 
-const verificarColisao = () => {
+const verificarColisaoPrincesa = () => {
   const princesaPosition = princesa.getBoundingClientRect();
   const playerPosition = player.getBoundingClientRect();
 
@@ -68,33 +68,33 @@ const verificarColisao = () => {
 // Ativar o escudo por 5 segundos
 const ativarEscudo = () => {
   escudoAtivo = true;
-  player.classList.add('escudo-ativo'); // Adiciona o efeito do escudo no jogador
+  player.classList.add('escudo-ativo');
   
-  // Desativa o escudo após 5 segundos
+ 
   setTimeout(() => {
     escudoAtivo = false;
     player.classList.remove('escudo-ativo');
   }, 5000);
 };
 
-// Loop do jogo para verificar colisão e animação do obstáculo
+
 const loop = setInterval(() => {
   const obstaculoPosition = obstaculo.offsetLeft;
   const playerPosition = +window.getComputedStyle(player).top.replace('px', '');
 
-  // Verifica a colisão com o obstáculo
+  // Verifica a colisão
   if (
     obstaculoPosition <= 120 &&
     obstaculoPosition > 0 &&
     playerPosition >= 400 &&
     playerPosition <= 550 &&
-    !escudoAtivo // O jogador só morre se o escudo não estiver ativo
+    !escudoAtivo // Logica1: O jogador só morre se o escudo não estiver ativo
   ) {
-    // Para a animação do obstáculo
+    // Para a animação 
     obstaculo.style.animation = 'none';
     obstaculo.style.left = `${obstaculoPosition}px`;
 
-    // Para a animação do jogador
+    // Para a animação do player
     player.style.animation = 'none';
     player.style.top = `${playerPosition}px`;
 
@@ -108,8 +108,10 @@ const loop = setInterval(() => {
   }
 
   // Verifica a colisão com a princesa
-  verificarColisao();
+  verificarColisaoPrincesa();
 }, 10);
+
+
 
 // Botão para voltar ao menu
 menuButton.addEventListener('click', () => {
