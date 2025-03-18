@@ -38,20 +38,21 @@ const iniciarMusica = () => {
 
 document.addEventListener('click', iniciarMusica);
 document.addEventListener('keydown', iniciarMusica);
-//velocidade do jogo
-setInterval ( () => {
-  if(velocidadeDoObstaculo > 0.5){
-    velocidadeDoObstaculo -= 0.6;
-    obstaculo.style.animationDuration = `${velocidadeDoObstaculo}`;
+//velocidade do jogo 
+setInterval(() => {
+  if (velocidadeDoObstaculo > 0.5) {
+    velocidadeDoObstaculo = Math.max(0.5, velocidadeDoObstaculo - 0.8); 
+    obstaculo.style.animationDuration = `${velocidadeDoObstaculo}s`; 
   }
 }, 30000);
+
 const intervaloRei = score >= 50 ? 20 : 30;
-// Função para atualizar o score
+
 function atualizarScore() {
   score++;
   scoreElement.textContent = `Score: ${score}`;
 
-  // Mostrar a princesa quando o score 3
+  // Mostrar a princesa quando o score 16 e por mútiplos de 50
   if (score === 16 || (score > 10 && (score - 16) % 50 === 0)) {
     princesa.style.display = 'block'; 
   
@@ -162,7 +163,7 @@ const verificarColisaoPrincesa = () => {
     // Ativa o escudo se não estiver ativo
     if (!escudoAtivo) {
       ativarEscudo();
-      princesa.style.display = 'none'; // Esconde a princesa após ser tocada
+      princesa.style.display = 'none'; 
     }
   }
 };
@@ -228,7 +229,7 @@ const loop = setInterval(() => {
     obstaculoPosition > 0 &&
     playerPosition >= 400 &&
     playerPosition <= 550 &&
-    !escudoAtivo // Logica1: O jogador só morre se o escudo não estiver ativo
+    !escudoAtivo // Logica Geral: O jogador só morre se o escudo não estiver ativo
   ) {
     // Para a animação 
     obstaculo.style.animation = 'none';
