@@ -5,20 +5,43 @@ const finalScoreElement = document.getElementById('final-score');
 const princesa = document.getElementById('princesa');
 const scoreElement = document.getElementById('score');
 const pontosElement = document.getElementById('pontos');
+const musicaFundo = document.getElementById('musicaFundo');
+const muteButton = document.getElementById('muteButton');
+const somGameOver = document.getElementById('somGameOver');
 
 const reiGelado = document.getElementById('reiGelado');
-/* Adicionar lógica rei gelado,  aumento velocidade e outra princesa*/
+
 let score = 0;
-let escudoAtivo = false;
+let escudoAtivo = false;;
 let playerEstaPulando = false;
 let scoreIntervalo;
 let velocidadeDoObstaculo = 2;
 let playerEstaAbaixado = false;
 let pontos = 0;
+somGameOver.volume = 0.7; 
+document.addEventListener('DOMContentLoaded', () => {
+  musicaFundo.play().catch(error => {
+    console.log('A música será iniciada após a primeira interação');
+  });
+});
+muteButton.addEventListener('click', () => {
+  musicaFundo.muted = !musicaFundo.muted;
+  muteButton.textContent = musicaFundo.muted ? 'Desmutar' : 'Mutar';
+});
+const iniciarMusica = () => {
+  if(musicaFundo.paused) {
+    musicaFundo.play();
+  }
+  document.removeEventListener('click', iniciarMusica);
+  document.removeEventListener('keydown', iniciarMusica);
+};
 
+document.addEventListener('click', iniciarMusica);
+document.addEventListener('keydown', iniciarMusica);
+//velocidade do jogo
 setInterval ( () => {
   if(velocidadeDoObstaculo > 0.5){
-    velocidadeDoObstaculo -= 0.3;
+    velocidadeDoObstaculo -= 0.6;
     obstaculo.style.animationDuration = `${velocidadeDoObstaculo}`;
   }
 }, 30000);
@@ -73,40 +96,32 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-const verificarColisaoReiGelado = () => {
-  const reiGeladoPosition = reiGelado.getBoundingClientRect();
-  const playerPosition = player.getBoundingClientRect();
 
-  if (playerEstaAbaixado) {
-
-    return;
-  }
-
-
-  if (
-    playerPosition.top <= reiGeladoPosition.bottom &&
-    playerPosition.left + playerPosition.width >= reiGeladoPosition.left &&
-    playerPosition.left <= reiGeladoPosition.left + reiGeladoPosition.width
-  ) {
-    
-    gameOver();
-  }
-};
 
 const gameOver = () => {
+  musicaFundo.pause();
+  musicaFundo.currentTime = 0;
+
+  setTimeout(() => {
+    somGameOver.currentTime = 0;
+    somGameOver.play().catch(error => {
+      console.log("Erro ao tocar som:", error);
+    });
+  }, 300);
   clearInterval(scoreIntervalo); 
   gameOverScreen.style.display = 'flex'; 
   finalScoreElement.textContent = `Score: ${score}`;
+  finalScoreElement.textContent = `Score: ${score} | Pontos: ${pontos}`; 
 };
 // Função para pular
 const jump = () => {
   if (player.classList.contains('jump')) return; // Pra impedir o pulo duplo
 
   playerEstaPulando = true;
-  player.classList.add('jump'); // Aplica a animação do pulo
+  player.classList.add('jump');
 
   setTimeout(() => {
-    player.classList.remove('jump'); // Para removee a animação do pulo após 0.5s
+    player.classList.remove('jump');
     playerEstaPulando = false;
   }, 500); 
 };
@@ -126,21 +141,25 @@ const verificarColisaoPrincesa = () => {
   const princesaPosition = princesa.getBoundingClientRect();
   const playerPosition = player.getBoundingClientRect();
 
-
+  // Verifica a colisão quando o jogador estiver pulando e colidir com a princesa
   if (
     playerPosition.top <= princesaPosition.bottom &&
     playerPosition.left + playerPosition.width >= princesaPosition.left &&
     playerPosition.left <= princesaPosition.left + princesaPosition.width &&
     playerEstaPulando
   ) {
-    pontos++; // Incrementa os pontos
+    // Incrementa os pontos quando a princesa é tocada
+    pontos++;
     pontosElement.textContent = `Pontos: ${pontos}`;
+
+    // Ativa o escudo se não estiver ativo
     if (!escudoAtivo) {
-      ativarEscudo(); 
-      princesa.style.display = 'none'; 
+      ativarEscudo();
+      princesa.style.display = 'none'; // Esconde a princesa após ser tocada
     }
   }
 };
+;
 
 // Ativar o escudo por 5 segundos
 const ativarEscudo = () => {
@@ -153,6 +172,31 @@ const ativarEscudo = () => {
     player.classList.remove('escudo-ativo');
   }, 5000);
 };
+
+
+
+
+
+const verificarColisaoReiGelado = () => {
+  const reiGeladoPosition = reiGelado.getBoundingClientRect();
+  const playerPosition = player.getBoundingClientRect();
+
+  if (playerEstaAbaixado) {
+
+    return;
+  }
+  
+
+  if (
+    playerPosition.top <= reiGeladoPosition.bottom &&
+    playerPosition.left + playerPosition.width >= reiGeladoPosition.left &&
+    playerPosition.left <= reiGeladoPosition.left + reiGeladoPosition.width 
+  ) {
+    
+    gameOver();
+  }
+};
+
 
 
 const loop = setInterval(() => {
@@ -185,6 +229,7 @@ const loop = setInterval(() => {
 
   verificarColisaoPrincesa();
   verificarColisaoReiGelado();
+  
 
 }, 10);
 

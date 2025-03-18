@@ -8,6 +8,7 @@
 </head>
 <body class="terra-de-ooo">
     <div id="game-container">
+        
         <img src="4JIi-unscreen.gif" class="princesa" id="princesa" style="display: none; position: absolute; right: 1300px; top: 200px; width: 100px; height: 150px;">
         <div id="score">Score: 0</div>
         <div id="pontos">Pontos: 0</div>
@@ -18,8 +19,15 @@
        <img id="montanha2" class="montanha2" src="pipe.png.png">
     <img src="iceking.gif"  id="reiGelado" class="reiGelado">
        <div id="grama"></div>
-
-
+       <button id="muteButton" style="position: fixed; bottom: 10px; right: 10px; z-index: 1000;">Mutar</button>
+       <audio id="musicaFundo" loop volume="0.5">
+        <source src="WhatsApp Audio 2025-03-18 at 15.20.55 (online-audio-converter.com).mp3" type="audio/mp3">
+      </audio>
+     
+      <audio id="somGameOver" preload="auto">
+        <source src="som game over- jake.mp3" type="audio/mpeg">
+      </audio>
+     </audio>
        <img id="nuvem" class="nuvem"
        alt="nuvem" src="nuvem1.png">
        <img id="nuvem2" class="nuvem2"
@@ -32,13 +40,13 @@
        alt="obstaculo" src="Gunter_adventure_time-removebg-preview.png">
        <img id="gramaa" class="gramaa"
     >
-  
+
     </div>
     <div id="game-over">
         <img src="game over.png" alt="Game Over" id="game-over-image">
       <img src="game over jake.gif" alt="">
-      <div id="final-score">Score: 0</div> 
-      <div id="pontos-final">Pontos: 0</div>
+      <div id="final-score"></div> 
+      <div id="pontos-final"></div>
       <button id="menu-button">MENU</button>
       </div>
     <script src="script.js" defer></script>
