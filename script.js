@@ -60,7 +60,7 @@ scoreIntervalo = setInterval(atualizarScore, 1000);
 document.addEventListener('keydown', (event) => {
   if (event.code === "ArrowDown" || event.key === "ArrowDown") {
     playerEstaAbaixado = true;
-    player.style.bottom = "-150px"; 
+    player.style.bottom = "0px"; 
     player.style.height = "180px"; 
     
     
@@ -69,26 +69,30 @@ document.addEventListener('keydown', (event) => {
       playerEstaAbaixado = false;
       player.style.bottom = "50px"; 
       player.style.height = "300px";
-    }, 500);
+    }, 600);
   }
 });
-
 
 const verificarColisaoReiGelado = () => {
   const reiGeladoPosition = reiGelado.getBoundingClientRect();
   const playerPosition = player.getBoundingClientRect();
 
-  
+  if (playerEstaAbaixado) {
+
+    return;
+  }
+
+
   if (
-    !playerEstaAbaixado && 
     playerPosition.top <= reiGeladoPosition.bottom &&
     playerPosition.left + playerPosition.width >= reiGeladoPosition.left &&
     playerPosition.left <= reiGeladoPosition.left + reiGeladoPosition.width
   ) {
-   
+    
     gameOver();
   }
 };
+
 const gameOver = () => {
   clearInterval(scoreIntervalo); 
   gameOverScreen.style.display = 'flex'; 
