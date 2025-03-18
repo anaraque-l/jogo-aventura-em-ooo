@@ -38,10 +38,10 @@ document.addEventListener('keydown', iniciarMusica);
 //velocidade do jogo 
 setInterval(() => {
   if (velocidadeDoObstaculo > 0.5) {
-    velocidadeDoObstaculo = Math.max(0.5, velocidadeDoObstaculo - 0.8); 
+    velocidadeDoObstaculo = Math.max(0.5, velocidadeDoObstaculo - 0.5); 
     obstaculo.style.animationDuration = `${velocidadeDoObstaculo}s`; 
   }
-}, 30000);
+}, 45000);
 
 const intervaloRei = score >= 50 ? 20 : 30;
 
