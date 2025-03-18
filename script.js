@@ -8,7 +8,7 @@ const pontosElement = document.getElementById('pontos');
 const musicaFundo = document.getElementById('musicaFundo');
 const muteButton = document.getElementById('muteButton');
 const somGameOver = document.getElementById('somGameOver');
-
+const somPrincesa = document.getElementById('somPrincesa');
 const reiGelado = document.getElementById('reiGelado');
 
 let score = 0;
@@ -45,7 +45,7 @@ setInterval ( () => {
     obstaculo.style.animationDuration = `${velocidadeDoObstaculo}`;
   }
 }, 30000);
-
+const intervaloRei = score >= 50 ? 20 : 30;
 // Função para atualizar o score
 function atualizarScore() {
   score++;
@@ -59,7 +59,7 @@ function atualizarScore() {
     princesa.style.display = 'none';
   }, 5000);
 }
-if (score === 20 || (score > 20 && (score - 20) % 30 === 0)) {
+if (score === 20 || (score > 20 && (score - 20) % intervaloRei === 0)) {
   reiGelado.style.display = 'block'; 
   reiGelado.style.animationPlayState = 'running'; 
 
@@ -68,7 +68,10 @@ if (score === 20 || (score > 20 && (score - 20) % 30 === 0)) {
     reiGelado.style.animationPlayState = 'paused';  
   }, 5000);
 }
-
+if (score === 100) {
+  document.body.classList.add('cenario-noturno');
+ 
+}
 }
 
 scoreIntervalo = setInterval(atualizarScore, 1000);
@@ -136,7 +139,7 @@ document.addEventListener('keydown', (event) => {
 
 
 
-
+somPrincesa.volume = 0.7;
 const verificarColisaoPrincesa = () => {
   const princesaPosition = princesa.getBoundingClientRect();
   const playerPosition = player.getBoundingClientRect();
@@ -148,6 +151,10 @@ const verificarColisaoPrincesa = () => {
     playerPosition.left <= princesaPosition.left + princesaPosition.width &&
     playerEstaPulando
   ) {
+    somPrincesa.currentTime = 0; 
+    somPrincesa.play().catch(error => {
+      console.log("Erro ao tocar som da princesa:", error);
+    });
     // Incrementa os pontos quando a princesa é tocada
     pontos++;
     pontosElement.textContent = `Pontos: ${pontos}`;
@@ -175,6 +182,18 @@ const ativarEscudo = () => {
 
 
 
+
+// Ativar o escudo por 5 segundos
+const ativarEscudo2 = () => {
+  escudoAtivo2 = true;
+  player.classList.add('escudo-ativo');
+  
+ 
+  setTimeout(() => {
+    escudoAtivo2 = false;
+    player.classList.remove('escudo-ativo');
+  }, 5000);
+};
 
 
 const verificarColisaoReiGelado = () => {
