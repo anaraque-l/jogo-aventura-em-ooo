@@ -4,11 +4,24 @@ const menuButton = document.getElementById('menu-button');
 const finalScoreElement = document.getElementById('final-score');
 const princesa = document.getElementById('princesa');
 const scoreElement = document.getElementById('score');
+const pontosElement = document.getElementById('pontos');
+
+const reiGelado = document.getElementById('reiGelado');
 /* Adicionar lógica rei gelado,  aumento velocidade e outra princesa*/
 let score = 0;
 let escudoAtivo = false;
 let playerEstaPulando = false;
 let scoreIntervalo;
+let velocidadeDoObstaculo = 2;
+let playerEstaAbaixado = false;
+let pontos = 0;
+
+setInterval ( () => {
+  if(velocidadeDoObstaculo > 0.5){
+    velocidadeDoObstaculo -= 0.3;
+    obstaculo.style.animationDuration = `${velocidadeDoObstaculo}`;
+  }
+}, 30000);
 
 // Função para atualizar o score
 function atualizarScore() {
@@ -16,17 +29,71 @@ function atualizarScore() {
   scoreElement.textContent = `Score: ${score}`;
 
   // Mostrar a princesa quando o score 3
-  if (score === 10 || (score > 10 && (score - 10) % 50 === 0)) {
+  if (score === 16 || (score > 10 && (score - 16) % 50 === 0)) {
     princesa.style.display = 'block'; 
   
   setTimeout(() => {
     princesa.style.display = 'none';
   }, 5000);
 }
+if (score === 20 || (score > 20 && (score - 20) % 30 === 0)) {
+  reiGelado.style.display = 'block'; 
+  reiGelado.style.animationPlayState = 'running'; 
+
+  setTimeout(() => {
+    reiGelado.style.display = 'none'; 
+    reiGelado.style.animationPlayState = 'paused';  
+  }, 5000);
+}
+
 }
 
 scoreIntervalo = setInterval(atualizarScore, 1000);
 
+
+
+
+
+
+
+// Função para abaixar 
+document.addEventListener('keydown', (event) => {
+  if (event.code === "ArrowDown" || event.key === "ArrowDown") {
+    playerEstaAbaixado = true;
+    player.style.bottom = "-150px"; 
+    player.style.height = "180px"; 
+    
+    
+
+    setTimeout(() => {
+      playerEstaAbaixado = false;
+      player.style.bottom = "50px"; 
+      player.style.height = "300px";
+    }, 500);
+  }
+});
+
+
+const verificarColisaoReiGelado = () => {
+  const reiGeladoPosition = reiGelado.getBoundingClientRect();
+  const playerPosition = player.getBoundingClientRect();
+
+  
+  if (
+    !playerEstaAbaixado && 
+    playerPosition.top <= reiGeladoPosition.bottom &&
+    playerPosition.left + playerPosition.width >= reiGeladoPosition.left &&
+    playerPosition.left <= reiGeladoPosition.left + reiGeladoPosition.width
+  ) {
+   
+    gameOver();
+  }
+};
+const gameOver = () => {
+  clearInterval(scoreIntervalo); 
+  gameOverScreen.style.display = 'flex'; 
+  finalScoreElement.textContent = `Score: ${score}`;
+};
 // Função para pular
 const jump = () => {
   if (player.classList.contains('jump')) return; // Pra impedir o pulo duplo
@@ -40,11 +107,15 @@ const jump = () => {
   }, 500); 
 };
 
+
+
 document.addEventListener('keydown', (event) => {
   if (event.code === "Space" || event.key === " ") {
     jump();
-  }
+  } 
 });
+
+
 
 
 const verificarColisaoPrincesa = () => {
@@ -58,6 +129,8 @@ const verificarColisaoPrincesa = () => {
     playerPosition.left <= princesaPosition.left + princesaPosition.width &&
     playerEstaPulando
   ) {
+    pontos++; // Incrementa os pontos
+    pontosElement.textContent = `Pontos: ${pontos}`;
     if (!escudoAtivo) {
       ativarEscudo(); 
       princesa.style.display = 'none'; 
@@ -103,12 +176,12 @@ const loop = setInterval(() => {
     clearInterval(scoreIntervalo);
     finalScoreElement.textContent = `Score: ${score}`;
     
-    // Mostra a tela de game over
-    gameOverScreen.style.display = 'flex';
+    gameOver();
   }
 
-  // Verifica a colisão com a princesa
   verificarColisaoPrincesa();
+  verificarColisaoReiGelado();
+
 }, 10);
 
 

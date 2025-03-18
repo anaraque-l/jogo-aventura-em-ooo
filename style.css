@@ -3,6 +3,8 @@ body{
     font-family: 'Arial', sans-serif;
     background-color: #f0f0f0;
     overflow: hidden; 
+    position: relative;
+ 
 }
 #game-container{
 position: relative;
@@ -43,7 +45,7 @@ align-items: center;
     z-index: 10;
 }
 
-/*  Começa fora da tela e vai até o fim  */
+
 @keyframes mover-princesa {
   0% {
     right: -200px; 
@@ -55,19 +57,40 @@ align-items: center;
 
 .princesa {
   position: absolute;
-  top: 300px; /* Posição vertical da princesa */
-  right: -200px; /* Começa fora da tela */
-  width: 150px; /* Tamanho da princesa */
+  top: 300px;
+  right: -200px;
+  width: 150px; 
   height: 150px;
   z-index: 10;
-  animation: mover-princesa 5s linear infinite; /* Movimento contínuo da princesa */
+  animation: mover-princesa 5s linear infinite;
 }
 
-.reiGelado{
- visibility: hidden;
- opacity:0;
-
+.reiGelado {
+  position: absolute;
+  top: 300px;
+  right: -50px;  
+  width: 150px;
+  height: 150px;
+  z-index: 10;
+  display: none;  
+  animation: mover-ReiGelado 5000ms linear infinite; 
 }
+
+@keyframes mover-ReiGelado {
+  0% {
+    right: -150px;  
+  }
+  100% {
+    right: 1300px;  
+  }
+}
+
+
+
+
+
+
+
 
 
 .obstaculo{
@@ -260,6 +283,23 @@ align-items: center;
   margin-bottom: 20px; 
 }
 
+#pontos{
+  position: absolute;
+  top:60px;
+  left: 20px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 20px;
+  color: #fafafa;
+  text-shadow: 2px 2px 0px #000000;
+  z-index: 10;
+}
+#pontos-final{
+  font-family: 'Press Start 2P', cursive; 
+  font-size: 24px;
+  color: #FFFFFF; 
+  text-shadow: 2px 2px 0px #000000; 
+  margin-bottom: 20px; 
+}
 
 
 
@@ -330,5 +370,3 @@ align-items: center;
   /* Lembrar de adicionar lógicas de outros beneficios e velocidade!! */
 
 }
-
-
