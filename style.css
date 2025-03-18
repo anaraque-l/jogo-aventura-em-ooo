@@ -397,24 +397,7 @@ align-items: center;
     right: 1600px;
   }
 }
-#muteButton {
-  background: #ff9900;
-  border: 2px solid #fff;
-  color: white;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  right: 20px;
-  left: auto;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.8em;
-  transition: all 0.3s ease;
-}
 
-#muteButton:hover {
-  background: #ff6600;
-  transform: scale(1.1);
-}
 
 #estrelas {
   position: fixed;

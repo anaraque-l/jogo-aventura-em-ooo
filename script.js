@@ -24,10 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('A música será iniciada após a primeira interação');
   });
 });
-muteButton.addEventListener('click', () => {
-  musicaFundo.muted = !musicaFundo.muted;
-  muteButton.textContent = musicaFundo.muted ? 'Desmutar' : 'Mutar';
-});
+
 const iniciarMusica = () => {
   if(musicaFundo.paused) {
     musicaFundo.play();
